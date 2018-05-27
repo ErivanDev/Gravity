@@ -1,12 +1,14 @@
 var arrow;
 var planets = [] ;
 var shoot;
+var goku;
 var count = 0;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	planets.push( new Planet(420, 400, 75, 200) );
 	planets.push( new Planet(746, 234, 65, 900) );
+	goku = loadImage("assets/goku.png");
 	shoot = new Shooter();
 }
 
@@ -51,6 +53,12 @@ function draw() {
 	/* Render shooter */
 	shoot.update();
 	shoot.draw();
+
+	push();
+	translate(420-100, 400-100);
+	rotate(-PI/8);
+	image(goku, 0, 0);
+	pop();
 }
 
 function Shooter() {
@@ -72,7 +80,7 @@ function Shooter() {
 		/* Mouse shooter */
 		if((!this.shooting) && (mouseIsPressed) && (!this.c_shooting)) {
 			this.shooting = true;
-			this.x2 = 420;
+			this.x2 = 420 - 10;
 			this.y2 = 400 - 90;
 			this.R = floor(random(255));
 			this.G = floor(random(255));
