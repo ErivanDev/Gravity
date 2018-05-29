@@ -6,8 +6,10 @@ var count = 0;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	planets.push( new Planet(420, 400, 75, 200) );
-	planets.push( new Planet(746, 234, 65, 900) );
+	planets.push( new Planet(420, 400, 75, 750) ); //200
+	planets.push( new Planet(746, 134, 65, 650) ); //900
+	planets.push( new Planet(746, 534, 65, 650) ); //900
+	planets.push( new Planet(946, 334, 75, 750) ); //X
 	goku = loadImage("assets/goku.png");
 	shoot = new Shooter();
 }
@@ -38,8 +40,9 @@ function draw() {
 		// 	}
 		// }
 	if(arrow != undefined){
-		arrow.orbit(planets[0]);
-		arrow.orbit(planets[1]);
+		for (var i = 0; i < planets.length ; i++) {
+			arrow.orbit(planets[i]);
+		}
 		arrow.newton();
 		arrow.draw();
 	}
@@ -94,7 +97,7 @@ function Shooter() {
 			var distance = dist(this.x2, this.y2, mouseX, mouseY) < 100 ? dist(this.x2, this.y2, mouseX, mouseY) : 100;
 			this.x1 = this.x2 - cos(tan) * distance;
 			this.y1 = this.y2 - sin(tan) * distance;
-			this.force = int(dist(this.x1, this.y1, this.x2, this.y2))/10;
+			this.force = int(dist(this.x1, this.y1, this.x2, this.y2))/6; //10
 		}
 
 		if (!mouseIsPressed && this.shooting) {
